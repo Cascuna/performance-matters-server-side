@@ -1,0 +1,40 @@
+{% extends "includes/main.html" %}
+
+{% block title %} 
+   {{ title }}
+{% endblock %}
+
+{% block body %}
+    <main> 
+        <div id="maincontainer"> 
+            <form action="/buildings/" method="get">
+                <select name="year" id="yearselection">
+                    {% for i in range(1700, 2030, 10) -%}
+                        <option value={{i}}> {{ i }} </option>
+                    {%- endfor %}
+                </select>
+                <input type="submit" value="OK">
+            </form>
+                        
+            <h1> {{ title }} </h1> 
+            {%for building in buildings %}
+            <!-- <a href="{{ building.building.value}}"> -->
+                {{ building.label.value }}
+                    {% if building.earliestBegin.value  %}
+                    {{ building.earliestBegin.value }} 
+                {% endif %}
+                {% if  building.latestBegin.value %}
+                    {{ building.latestBegin.value }}
+                {% endif %}
+                {% if  building.earliestEnd.value  %}
+                    {{ building.earliestEnd.value }} 
+                {% endif %}
+                </a>  
+                <br/> <br/>
+        
+                
+            {% endfor %}
+        <div id="test" class="inactivemap"></div>           
+    </main>
+
+{% endblock %}

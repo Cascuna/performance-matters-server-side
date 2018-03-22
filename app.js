@@ -5,12 +5,14 @@ const app = express()
 // Using config like settings
 const config = require('./config')
 
-var router = express.Router();
+var router = express.Router()
+var path = require('path')
 console.log(sparqlIndex)
 
 // Fixes static file bug, docs are outdated
 express.static('global')
-app.use(express.static('static'))
+
+app.use(express.static(path.join(__dirname, 'static')))
 
 // Configuring the nj path as /templates
 nunjucks.configure('templates', {

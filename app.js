@@ -7,7 +7,7 @@ const config = require('./config')
 
 var router = express.Router()
 var path = require('path')
-console.log(sparqlIndex)
+
 
 // Fixes static file bug, docs are outdated
 express.static('global')
@@ -23,4 +23,4 @@ nunjucks.configure('templates', {
 
 app.use('/', sparqlIndex)
 
-app.listen(3080, () => {console.log('houston, we have connection')})
+app.listen(config.port, () => {console.log(config.title + " running on port 3080")})

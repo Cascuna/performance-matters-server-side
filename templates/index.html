@@ -6,17 +6,17 @@
 
 {% block body %}
     <main> 
-        <div id="maincontainer"> 
-            <form action="/buildings/" method="get">
-                <select name="year" id="yearselection">
-                    {% for i in range(1700, 2030, 10) -%}
-                        <option value={{i}}> {{ i }} </option>
-                    {%- endfor %}
-                </select>
-                <input type="submit" value="OK">
-            </form>
-                        
-            <h1> {{ title }} </h1> 
+        <form action="/" method="get">
+            <select name="year" id="yearselection">
+                {% for i in range(1700, 2030, 10) -%}
+                <option value={{i}}> {{ i }} </option>
+                {%- endfor %}
+            </select>
+            <input type="submit" value="OK">
+        </form>
+        
+        <h1> {{ title }} </h1> 
+        <div id=buildings-container>
             {%for building in buildings %}
             <!-- <a href="{{ building.building.value}}"> -->
                 {{ building.label.value }}
@@ -29,12 +29,11 @@
                 {% if  building.earliestEnd.value  %}
                     {{ building.earliestEnd.value }} 
                 {% endif %}
-                </a>  
-                <br/> <br/>
-        
-                
+            <!-- </a>   -->
+            <br/> <br/> 
             {% endfor %}
-        <div id="test" class="inactivemap"></div>           
+        </div>
+    <div id="test" class="inactivemap"></div>           
     </main>
 
 {% endblock %}

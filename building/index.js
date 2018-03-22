@@ -7,7 +7,7 @@ var components = require("server-components")
 const { JSDOM } = jsdom
 var L = require('leaflet-headless')
 app.use(express.json());       // to support JSON-encoded bodies
-app.use(express.urlencoded()); // to support URL-encoded bodies
+// app.use(express.urlencoded()); // to support URL-encoded bodies
 // Configuring the nj path as /templates
 
 var components = require("server-components")

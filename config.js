@@ -2,6 +2,7 @@ var config = {}
 
 
 config.title = 'Amsterdam door de jaren heen'
+config.port = 3080
 
 config.sparqlEndpoints = {} 
 

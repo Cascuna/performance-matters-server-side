@@ -1,11 +1,12 @@
 {% extends "includes/main.html" %}
 
 {% block title %} 
-   {{ title }}
+   {{ config.title }}
 {% endblock %}
 
 {% block body %}
     <main> 
+        <header><h1>{{ config.title }}</h1></header>
         <form action="/" method="get">
             <select name="year" id="yearselection">
                 {% for i in range(1700, 2030, 10) -%}
@@ -16,23 +17,24 @@
         </form>
         
         <h1> {{ title }} </h1> 
-        <div id=buildings-container>
+        <h2> In totaal zijn er {{ buildings.length }} gebouwen gebouwt in amsterdam</h2>
+        <section id=buildings-container>
             {%for building in buildings %}
+            <div class=building>
             <!-- <a href="{{ building.building.value}}"> -->
-                {{ building.label.value }}
+                <h3>{{ building.label.value }}</h3>
                     {% if building.earliestBegin.value  %}
-                    {{ building.earliestBegin.value }} 
-                {% endif %}
-                {% if  building.latestBegin.value %}
-                    {{ building.latestBegin.value }}
+                    <div class=buildyear>Gebouwt in 
+                    {{ building.earliestBegin.value }}</div> 
                 {% endif %}
                 {% if  building.earliestEnd.value  %}
+                 Gesloopt in 
                     {{ building.earliestEnd.value }} 
                 {% endif %}
             <!-- </a>   -->
-            <br/> <br/> 
+            </div> 
             {% endfor %}
-        </div>
+        </section>
     <div id="test" class="inactivemap"></div>           
     </main>
 

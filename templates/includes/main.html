@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>{% block title %} {% endblock %}</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<style>
+		header h1{
+		color: #ec0000;
+		}
+
+		main {
+			min-width: 20em;
+			max-width: 40em;
+			margin: 0 auto;
+		}
+
+		#buildings-container {
+			display:grid;
+			grid-template-columns: 50% 50%;
+		}
+
+		.building {
+			margin: 1em 0em 1em 0em;
+		}
+
+		.building .buildyear {
+			display: block;
+		}
+
+		.button {
+			text-decoration: none;
+			display: block;
+			background-color: #004699;
+			color: #fff;
+			padding: 16px 32px;
+			padding: .5em .5em;
+			border-radius: 8px;
+			border-radius: 0.5em;
+			width: fit-content;
+		
+		
+		}
+
+		.button:hover {
+			background-color: #009de6;
+
+			
+		}
+	</style>
+	{% block css %} {% endblock %}
+</head>
+<body>
+	{% block body %}
+    {% endblock %}
+    <script src="js/bundle.js"></script>
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

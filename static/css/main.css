@@ -1,0 +1,22 @@
+header h1{
+    color: #ec0000;
+}
+
+main {
+    min-width: 20em;
+    max-width: 40em;
+    margin: 0 auto;
+}
+
+#buildings-container {
+    display:grid;
+    grid-template-columns: 50% 50%;
+}
+
+.building {
+    margin: 1em 0em 1em 0em;
+}
+
+.building .buildyear {
+    display: block;
+}

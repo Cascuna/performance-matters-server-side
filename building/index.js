@@ -28,6 +28,7 @@ router.all('/buildings/', function (req, res) {
     newBuildings = sparql.allBuildingsByYear(req.query.year).then((newBuildings)=>
   {
     res.render('index.html', {
+      year: req.query.year, 
       buildings: newBuildings,
       config: config
     })

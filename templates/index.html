@@ -7,7 +7,7 @@
 {% block body %}
     <main> 
         <header><h1>{{ config.title }}</h1></header>
-        <form action="/" method="get">
+        <form action="/buildings" method="get" id='yearform'>
             <select name="year" id="yearselection">
                 {% for i in range(1700, 2030, 10) -%}
                 <option value={{i}}> {{ i }} </option>

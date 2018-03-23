@@ -23,42 +23,15 @@ router.all('/', function (req, res) {
   })
 })
 
-function determineActiveBuildings(year, obj){
-  let end = 2020
-  let begin = 0
-  try {
-    end = obj.earliestEnd.value
-  } catch(e) {}
-  try {
-    begin = obj.earliestBegin.value
-  } catch(e) {}
-  
-  try{
-  return(obj.earliestBegin.value-year < 10 && obj.earliestBegin.value-year > -1)
-  }catch(e){return false}
-}
 
 router.all('/buildings/', function (req, res) {
     newBuildings = sparql.allBuildingsByYear(req.query.year).then((newBuildings)=>
   {
     res.render('index.html', {
       buildings: newBuildings,
+      config: config
     })
   })
-
-router.all('/building/:name', function(request, response){
-  
-  res.render('buildingdetail.html', {
-    building: request.params.name
-  })
-})
-   
-   
-   
-})
-
-router.all('/test', function (req, res) {
-  res.send('Birds home page')
 })
 
 module.exports = router 

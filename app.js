@@ -4,14 +4,14 @@ const sparqlIndex = require('./building/index')
 const app = express()
 // Using config like settings
 const config = require('./config')
-
+var compression = require('compression')
 var router = express.Router()
 var path = require('path')
 
 
 // Fixes static file bug, docs are outdated
 express.static('global')
-
+app.use(compression())
 app.use(express.static(path.join(__dirname, 'static')))
 
 // Configuring the nj path as /templates

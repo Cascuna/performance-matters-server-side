@@ -13,5 +13,9 @@
   * If you experience the fsevents bug, try `` npm install -no-optional ``
 1. `` npm start `` 
 
-## Dependencies
+## Tooling
+As tooling i've used `browserify`, `js-uglify` && `nodemon`  
+Browserify to bundle the client-side javascript  
+js-uglify to compress this bundle  
+Nodemon as a change watcher 
 

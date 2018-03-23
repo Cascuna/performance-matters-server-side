@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile-js": "browserify ./static/js/main.js | uglifyjs > ./static/js/bundle.js",
-    "start": "npm run compile-js && node app.js"
+    "start": "npm run compile-js && nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "leaflet-headless": "^0.2.6",
     "leaflet-map-server-component": "^0.2.0",
     "node-fetch": "^2.1.1",
+    "nodemon": "^1.17.2",
     "nunjucks": "^3.1.2",
     "request": "^2.85.0",
     "server-components": "^0.2.1",

@@ -2,11 +2,9 @@ const sparql = require('./sparql')
 var express = require('express')
 var router = express.Router()
 var app = express();
-const jsdom = require("jsdom")
 var components = require("server-components")
 const config = require('../config')
-const { JSDOM } = jsdom
-var L = require('leaflet-headless')
+
 app.use(express.json());       // to support JSON-encoded bodies
 // app.use(express.urlencoded()); // to support URL-encoded bodies
 // Configuring the nj path as /templates

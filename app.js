@@ -12,7 +12,8 @@ var path = require('path')
 // Fixes static file bug, docs are outdated
 express.static('global')
 app.use(compression())
-app.use(express.static(path.join(__dirname, 'static')))
+// Changed this from "/static" to "/" so i can register the serverworker! 
+app.use(express.static(path.join(__dirname, '/')))
 
 // Configuring the nj path as /templates
 nunjucks.configure('templates', {

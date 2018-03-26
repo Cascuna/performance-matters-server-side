@@ -16,6 +16,7 @@ self.addEventListener('install', function(event) {
             console.log(SW_CONSOLE_PREFIX + ' Precaching App Shell')
             cache.addAll([
                 '/',
+                '/pwaoffline',
                 'static/js/bundle.js',
                 'https://fonts.googleapis.com/css?family=Ubuntu+Mono'
             ])
@@ -59,16 +60,20 @@ self.addEventListener('fetch', function(event){
                 return fetch(event.request)
                 .then(function(newResponse){
                     return caches.open(DYNAMIC_CACHE_NAME + DYNAMIC_CACHE_VERSION)
-                        .then(function(cache) {
-                            // Put differs from add, requires you to define a key it gets saved under aswell. Doesn't make any requests unlinke Add
-                            // .clone() clones the response because otherwise the newResponse is consumed and we can't return it. Remember, you can only use a result of a promise one
-                            cache.put(event.request.url, newResponse.clone())
-                            return newResponse
-                        })
+                    .then(function(cache) {
+                        // Put differs from add, requires you to define a key it gets saved under aswell. Doesn't make any requests unlinke Add
+                        // .clone() clones the response because otherwise the newResponse is consumed and we can't return it. Remember, you can only use a result of a promise one
+                        cache.put(event.request.url, newResponse.clone())
+                        return newResponse
                     })
-                    .catch(function(error){ SW_CONSOLE_PREFIX + ' Fetch had a error' + error} 
-                    )
-                }
+                })
+                .catch(function(error){
+                    return caches.open(PRE_CACHE_NAME + PRE_CACHE_VERSION)
+                    .then(function(cache) {
+                        return cache.match('/pwaoffline')    
+                    })
+                })
+            }
         })
     )
 })

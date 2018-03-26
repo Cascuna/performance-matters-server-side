@@ -24,4 +24,8 @@ nunjucks.configure('templates', {
 
 app.use('/', sparqlIndex)
 
+app.get('/pwaoffline',function(request, response) {
+    response.render('offline.html')
+}) 
+
 app.listen(config.port, () => {console.log(config.title + " running on port 3080")})

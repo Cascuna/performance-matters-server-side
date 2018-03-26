@@ -10,13 +10,14 @@ self.addEventListener('install', function(event) {
         caches.open('precache')
         .then(function(cache) {
             console.log(swConsolePrefix + ' Precaching App Shell')
-            cache.add('static/js/bundle.js')
-            cache.add('templates/index.html')
-            cache.add('/')
+            cache.addAll([
+                '/',
+                'static/js/bundle.js',
+                'https://fonts.googleapis.com/css?family=Ubuntu+Mono'
+            ])
         })
+        .catch(function(error) {console.log(swConsolePrefix + 'Issue while trying to precache ' + error)})
     )
-      
-
 })
 
 // This won't fire after the install if you reload the tab, it has to be closed first
@@ -40,7 +41,18 @@ self.addEventListener('fetch', function(event){
                 return response
             } else{
                 return fetch(event.request)
-            }
+                .then(function(newResponse){
+                    return caches.open('dynamiccache')
+                        .then(function(cache) {
+                            // Put differs from add, requires you to define a key it gets saved under aswell. Doesn't make any requests unlinke Add
+                            // .clone() clones the response because otherwise the newResponse is consumed and we can't return it. Remember, you can only use a result of a promise one
+                            cache.put(event.request.url, newResponse.clone())
+                            return newResponse
+                        })
+                    })
+                    .catch(function(error){ swConsolePrefix + ' Fetch had a error' + error} 
+                    )
+                }
         })
     )
 })

@@ -16,7 +16,7 @@ yearSelect.addEventListener("change", (event) => {
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
     .register('../../sw.js', {scope: '/'})
-    .then(() => {
+    .then(function() {
         console.log('Service worker has been registered')
     })
 }

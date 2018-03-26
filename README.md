@@ -20,11 +20,21 @@ Nodemon as a change watcher  
 
 ## Performance
 ### Setup
-For the testing i've used Chrome and it's developer tools, especially the audit tool.
+For the testing i've used Chrome and it's developer tools, especially the audit tool.  
+In this i disabled the cache, throtled on Slow 3G
 ### Results
 #### Critical CSS
+
+
 Firstly I converted my css to critical css. Since the css is fairly small & everything is needed, i went ahead and added all css to [main.html](templates/main.html). However, I would love to look into [automating](https://github.com/addyosmani/critical) this step, together with [css minifying](https://www.npmjs.com/package/css-minify)   
-which improved the first render (picture) by .2 seconds
+![img](docs/without-critical-css.png)
+First meaningful paint : **2.39s**
+Time blocked by the css : **2.01s**
+
+![img](docs/with-critical-css.png)
+First meaningful paint: **540ms**
+
+As we can clearly see, critical css has a big impact. It almost took the loading time down by 2 seconds (1.850s). This is definilty something i can recommend automating
 
 #### Compression
 For compression (gzip) i used [compression](https://github.com/expressjs/compression/blob/master/README.md) a express/node.js middleware which automatically gzips all text files. 

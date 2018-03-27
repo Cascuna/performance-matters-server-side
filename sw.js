@@ -70,7 +70,9 @@ self.addEventListener('fetch', function(event){
                 .catch(function(error){
                     return caches.open(PRE_CACHE_NAME + PRE_CACHE_VERSION)
                     .then(function(cache) {
-                        return cache.match('/pwaoffline')    
+                        if (event.request.headers.get('accept').includes('text/html')) {
+                            return cache.match('/pwaoffline')    
+                        }
                     })
                 })
             }

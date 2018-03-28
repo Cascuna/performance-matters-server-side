@@ -70,6 +70,7 @@ self.addEventListener('fetch', function(event){
                 .catch(function(error){
                     return caches.open(PRE_CACHE_NAME + PRE_CACHE_VERSION)
                     .then(function(cache) {
+                        // Only send the HTML page as a fallback if the request accepts HTML
                         if (event.request.headers.get('accept').includes('text/html')) {
                             return cache.match('/pwaoffline')    
                         }

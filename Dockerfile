@@ -13,7 +13,7 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3080
+EXPOSE 8080:3080
 # Calls the npm script that we want
 CMD ["npm", "start"]
 

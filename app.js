@@ -12,7 +12,8 @@ var path = require('path')
 // Fixes static file bug, docs are outdated
 express.static('global')
 app.use(compression())
-app.use(express.static(path.join(__dirname, 'static')))
+// Changed this from "/static" to "/" so i can register the serverworker! 
+app.use(express.static(path.join(__dirname, '/')))
 
 // Configuring the nj path as /templates
 nunjucks.configure('templates', {
@@ -22,5 +23,9 @@ nunjucks.configure('templates', {
 
 
 app.use('/', sparqlIndex)
+
+app.get('/pwaoffline',function(request, response) {
+    response.render('offline.html')
+}) 
 
 app.listen(config.port, () => {console.log(config.title + " running on port 3080")})

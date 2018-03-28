@@ -1,0 +1,11 @@
+<form action="/buildings" method="get" id='yearform'>
+    <label for="yearselection"> Selecteer een gewenst bouw decenium </label>
+    <select name="year" id="yearselection">
+        {% for i in range(1700, 2030, 10) -%}
+        <option value={{i}}> {{ i }} </option>
+        {%- endfor %}
+    </select>
+    <input type="submit" class=button value="Zoek de gebouwen">
+</form>
+
+<a href="/" class="button">laat alle gebouwen zien</button> </a>

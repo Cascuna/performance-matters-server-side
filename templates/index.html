@@ -5,43 +5,30 @@
 {% endblock %}
 
 {% block body %}
-    <main> 
-        <header><h1>{{ config.title }}</h1></header>
-        <form action="/buildings" method="get" id='yearform'>
-            <label for="yearselection"> Selecteer een gewenst bouw decenium </label>
-            <select name="year" id="yearselection">
-                {% for i in range(1700, 2030, 10) -%}
-                <option value={{i}}> {{ i }} </option>
-                {%- endfor %}
-            </select>
-            <input type="submit" class=button value="Zoek de gebouwen">
-        </form>
+    {% include 'includes/toolbar.html' %}
+    
+    <h1> {{ title }} </h1> 
+    {% if year %}
+    <h2> In het jaar {{ year }} zijn er {{ buildings.length }} gebouwen gebouwt </h2>
+    {% else %}
+    <h2> In totaal zijn er {{ buildings.length }} gebouwen gebouwt in amsterdam</h2>
+    {% endif %}
 
-        <a href="/" class="button">laat alle gebouwen zien</button> </a>
-        
-        <h1> {{ title }} </h1> 
-        {% if year %}
-        <h2> In het jaar {{ year }} zijn er {{ buildings.length }} gebouwen gebouwt </h2>
-        {% else %}
-        <h2> In totaal zijn er {{ buildings.length }} gebouwen gebouwt in amsterdam</h2>
-        {% endif %}
-      
-        <section id=buildings-container>
-            {%for building in buildings %}
-            <div class=building>
-                <h3>{{ building.label.value }}</h3>
-                    {% if building.earliestBegin.value  %}
-                    <div class=buildyear>Gebouwt in 
-                    {{ building.earliestBegin.value }}</div> 
-                {% endif %}
-                {% if  building.earliestEnd.value  %}
-                 Gesloopt in 
-                    {{ building.earliestEnd.value }} 
-                {% endif %}
-            </div> 
-            {% endfor %}
-        </section>
-    <div id="test" class="inactivemap"></div>           
-    </main>
+    <section id=buildings-container>
+        {%for building in buildings %}
+        <div class=building>
+            <h3>{{ building.label.value }}</h3>
+                {% if building.earliestBegin.value  %}
+                <div class=buildyear>Gebouwt in 
+                {{ building.earliestBegin.value }}</div> 
+            {% endif %}
+            {% if  building.earliestEnd.value  %}
+            Gesloopt in 
+                {{ building.earliestEnd.value }} 
+            {% endif %}
+        </div> 
+        {% endfor %}
+    </section>
+<div id="test" class="inactivemap"></div>           
 
 {% endblock %}

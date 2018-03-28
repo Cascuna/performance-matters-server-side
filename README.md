@@ -1,15 +1,28 @@
 # performance-matters-server-side
 
+## What does the app do
+The app lists every building in the (adamlink)[https://adamlink.nl/geo/buildings/list] which have been fetched through a sparql query.  
+Further more you can filter on specific decenias.  
+As a cherry on top this website is also supported by a serviceworker, which gives the accesibility to access to the functionality offline after you've visited atleast once`
+
 ## Requirements
 `npm` version tested: `v5.7.1`  
 `node` version tested: `v8.9.4`  
-[node-gyp](https://github.com/nodejs/node-gyp) version tested: `v3.6.2`
+### Optionally
+`docker` if you want to run the docker container  `version 18 >` should work, not testing on other versions.  
 
 ## How to setup
-1. `` npm -v && node -v && node-gyp -v `` to ensure you have the requirements
-1. `` npm install `` 
-  * If you experience the fsevents bug, try `` npm install -no-optional ``
-1. `` npm start `` 
+### Node/NPM
+1. ``` $ npm -v && node -v  ``` to ensure you have the requirements
+1. ``` $ npm install ``` 
+> If you experience the fsevents bug, try `` npm install -no-optional ``
+1. ``` $ npm start ``` 
+
+### Docker
+Alternatively, you can use the docker image, which is quite small `<10MB`
+``` $ docker build -t pfmserverside . ```
+``` $ docker run -d pfmserverside . ``` This will build and run (in detached mode `-d`) the app,
+making it accesible at localhost:3080
 
 ## Tooling
 As tooling i've used `browserify`, `js-uglify` && `nodemon`  
@@ -60,3 +73,7 @@ Quite a nice improvement of 50ms, especially considering how easy it is to confi
 ### Future/todo list
 * I really want to get server side loading of geo location maps working. I have the script to generate the images but WKT to GEOJSON parsing proved to be quite difficult
 * Put some more care into the overall design (css/html) since i'm not satisfied with this yet.
+
+
+### Service Worker
+As a **user** i'd like to *revisit the website whatever my internet connection* so a internet connection isn't a restraint for me

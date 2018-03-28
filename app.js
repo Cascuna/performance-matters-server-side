@@ -28,4 +28,4 @@ app.get('/pwaoffline',function(request, response) {
     response.render('offline.html')
 }) 
 
-app.listen(config.port, () => {console.log(config.title + " running on port 3080")})
+app.listen(config.port, '0.0.0.0', () => {console.log(config.title + " running on port 3080")})

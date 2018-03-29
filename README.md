@@ -21,8 +21,8 @@ As a cherry on top this website is also supported by a serviceworker, which give
 ### Docker
 Alternatively, you can use the docker image, which is quite small `<10MB`
 ``` $ docker build -t pfmserverside . ```
-``` $ docker run -d pfmserverside . ``` This will build and run (in detached mode `-d`) the app,
-making it accesible at localhost:3080
+``` $ docker run  -p 8080:3080 -d pfmserverside . ``` This will build and run (in detached mode `-d`) the app,
+making it accesible at localhost:8080
 
 ## Tooling
 As tooling i've used `browserify`, `js-uglify` && `nodemon`  
@@ -76,4 +76,5 @@ Quite a nice improvement of 50ms, especially considering how easy it is to confi
 
 
 ### Service Worker
-As a **user** i'd like to *revisit the website whatever my internet connection* so a internet connection isn't a restraint for me
+As a **user** i'd like to *revisit the website whatever my internet connection* so a internet connection isn't a restraint for me.
+
